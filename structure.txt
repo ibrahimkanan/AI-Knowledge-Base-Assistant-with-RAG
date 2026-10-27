@@ -1,0 +1,29 @@
+rag-knowledge-base/
+├── backend/
+│   ├── app/
+│   │   ├── main.py                 # FastAPI entry point & SSE routes
+│   │   ├── core/
+│   │   │   ├── config.py           # Environment variables (Pydantic Settings)
+│   │   │   ├── security.py         # JWT + refresh token rotation
+│   │   │   └── rate_limit.py       # Per-user Redis rate limiting
+│   │   ├── db/
+│   │   │   ├── session.py          # Async SQLAlchemy + pgvector setup
+│   │   │   └── models.py           # Multi-tenant & RAG database models
+│   │   ├── api/
+│   │   │   ├── auth.py             # Login, register, refresh token endpoints
+│   │   │   ├── documents.py        # Upload & status endpoints
+│   │   │   └── chat.py             # Semantic search + Claude SSE streaming
+│   │   ├── rag/
+│   │   │   ├── parser.py           # Arabic + English PDF/Doc parsing
+│   │   │   ├── chunker.py          # Text chunking with page/paragraph tracking
+│   │   │   ├── embeddings.py       # Embedding generation (BGE-M3 / API)
+│   │   │   └── retriever.py        # pgvector search + cross-encoder re-ranking
+│   │   └── worker/
+│   │       └── tasks.py            # ARQ background queue for document processing
+│   ├── scripts/
+│   │   └── evaluate.py             # 20-30 test questions evaluation script
+│   ├── tests/                      # Pytest + AsyncClient integration tests
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/                       # React + TypeScript (SSE Streaming UI)
+└── docker-compose.yml              # PostgreSQL (pgvector) + Redis
