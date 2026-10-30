@@ -10,6 +10,7 @@ from app.db.session import init_db, get_db, engine
 from app.worker.tasks import parse_redis_url
 from app.api.auth import router as auth_router
 from app.api.documents import router as documents_router
+from app.api.chat import router as chat_router
 
 
 @asynccontextmanager
@@ -32,6 +33,7 @@ app = FastAPI(
 # Register API routers
 app.include_router(auth_router)
 app.include_router(documents_router)
+app.include_router(chat_router)
 
 
 @app.get("/health")
